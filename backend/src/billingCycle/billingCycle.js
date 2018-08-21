@@ -12,4 +12,12 @@ const debitScheme = new mongoose.Scheme({
     status: { type: String, required: false, uppercase: true, enum: ['PAGO', 'PENDENTE', 'AGENDADO'] }
 })
 
-const billingCycleScheme = new mongoose.Scheme({})
+const billingCycleScheme = new mongoose.Scheme({
+    name: { type: String, required: true },
+    month: { type: Number, min: 1, max: 12, required: true },
+    year: {type: Number, min: 1970, max: 2100, required: true },
+    credit: [creditScheme],
+    debts: [debitScheme]
+})
+
+module.exports = restfull.model('BillingCycle', billingCycleScheme)

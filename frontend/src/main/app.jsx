@@ -1,8 +1,17 @@
 import '../common/template/dependencies'
 import React from 'react'
+import Header from '../common/template/header'
+import Sidebar from '../common/template/menu'
+import Footer from '../common/template/footer'
+import Routes from './routes'
 
 export default props => (
-    <div className="wrapper">
-        <h1>App</h1>
+    <div className='wrapper'>
+        <Header />
+        <Sidebar />
+        <div className="content-wrapper">
+            <Routes />
+        </div>
+        <Footer />
     </div>
 )

@@ -5,7 +5,7 @@ const express = require('express')
 const queryParser = require('express-query-int')
 const server = express()
 
-server.use(bodyParse.urlencoded({ extended: true }))
+server.use(bodyParse.urlencoded({ useNewUrlParse: true }))
 server.use(bodyParse.json())
 server.use(allowsCors)
 server.use(queryParser)

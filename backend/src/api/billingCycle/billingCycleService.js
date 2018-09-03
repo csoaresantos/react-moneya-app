@@ -2,15 +2,15 @@ const BillingCycle = require('./billingCycle')
 const errorHandler = require('../common/errorHandler')
 
 BillingCycle.methods(['get', 'post', 'put', 'delete'])
-BillingCycle.updateOptions({ new: true, runValidators: true})
+BillingCycle.updateOptions({new: true, runValidators: true})
 BillingCycle.after('post', errorHandler).after('put', errorHandler)
 
-BillingCycle.route('count',(req, res, next) => {
+BillingCycle.route('count', (req, res, next) => {
     BillingCycle.count((error, value) => {
         if(error) {
-            res.status(500).json({ errors: [error] })
+            res.status(500).json({errors: [error]})
         } else {
-            res.json({ value })
+            res.json({value})
         }
     })
 })

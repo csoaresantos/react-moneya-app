@@ -1,6 +1,9 @@
 import React, { Component} from 'react'
 import { reduxForm, Field } from 'redux-form'
 import labelAndInput from '../common/form/labelAndInput'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { init } from './billingCycleActions'
 
 class BillingCycleForm extends Component {
 
@@ -14,11 +17,14 @@ class BillingCycleForm extends Component {
                     <Field name="year" component={labelAndInput} label='Ano'cols='12 4' placeholder='Informe o ano'  />
                 </div>
                 <div className="box-footer">
-                    <button type="subnit" className="btn btn-primary">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="button" className="btn btn-default" onClick={this.props.init}>Cancelar</button>
                 </div>
             </form>
         )
     }
 }
 
-export default reduxForm({form: 'BillingCycleForm'})(BillingCycleForm)
+BillingCycleForm = reduxForm({form: 'BillingCycleForm', destroyOnUnmount: false})(BillingCycleForm)
+const dispatchToProps = dispatch => bindActionCreators({init}, dispatch)
+export default connect(null, dispatchToProps)(BillingCycleForm)
